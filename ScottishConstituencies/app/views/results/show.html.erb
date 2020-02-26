@@ -1,0 +1,263 @@
+<style type="text/css">
+      #mapDiv {
+        width: 600px;
+        height: 400px;
+      }
+    </style>
+    
+    <div id="mapDiv"></div>
+<p>
+  <strong>Ons code:</strong>
+  <%= @result.ons_code %>
+</p>
+
+<p>
+  <strong>Constituency:</strong>
+  <%= @result.constituency %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @result.region %>
+</p>
+
+<p>
+  <strong>Election date:</strong>
+  <%= @result.election_date %>
+</p>
+
+<p>
+  <strong>Electorate:</strong>
+  <%= @result.electorate %>
+</p>
+
+<p>
+  <strong>Total ballot:</strong>
+  <%= @result.total_ballot %>
+</p>
+
+<p>
+  <strong>Total valid:</strong>
+  <%= @result.total_valid %>
+</p>
+
+<p>
+  <strong>Rejected ballot:</strong>
+  <%= @result.rejected_ballot %>
+</p>
+
+<p>
+  <strong>Turnout:</strong>
+  <%= @result.turnout %>
+</p>
+
+<p>
+  <strong>Rejected ballot percent:</strong>
+  <%= @result.rejected_ballot_percent %>
+</p>
+
+<p>
+  <strong>Con:</strong>
+  <%= @result.con %>
+</p>
+
+<p>
+  <strong>Lab:</strong>
+  <%= @result.lab %>
+</p>
+
+<p>
+  <strong>Lib:</strong>
+  <%= @result.lib %>
+</p>
+
+<p>
+  <strong>Snp:</strong>
+  <%= @result.snp %>
+</p>
+
+<p>
+  <strong>Ind:</strong>
+  <%= @result.ind %>
+</p>
+
+<p>
+  <strong>Tusc:</strong>
+  <%= @result.tusc %>
+</p>
+
+<p>
+  <strong>Grn:</strong>
+  <%= @result.grn %>
+</p>
+
+<p>
+  <strong>Other:</strong>
+  <%= @result.other %>
+</p>
+
+<p>
+  <strong>Con percent:</strong>
+  <%= @result.con_percent %>
+</p>
+
+<p>
+  <strong>Lab percent:</strong>
+  <%= @result.lab_percent %>
+</p>
+
+<p>
+  <strong>Lib percent:</strong>
+  <%= @result.lib_percent %>
+</p>
+
+<p>
+  <strong>Snp percent:</strong>
+  <%= @result.snp_percent %>
+</p>
+
+<p>
+  <strong>Ind percent:</strong>
+  <%= @result.ind_percent %>
+</p>
+
+<p>
+  <strong>Tusc percent:</strong>
+  <%= @result.tusc_percent %>
+</p>
+
+<p>
+  <strong>Grn percent:</strong>
+  <%= @result.grn_percent %>
+</p>
+
+<p>
+  <strong>Other percent:</strong>
+  <%= @result.other_percent %>
+</p>
+
+<p>
+  <strong>Win:</strong>
+  <%= @result.win %>
+</p>
+
+<p>
+  <strong>Second:</strong>
+  <%= @result.second %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>
+
+<script>
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('mapDiv'), {
+    zoom: 10,
+   
+  });
+  
+
+var json = <%= raw @results.to_json %>
+
+
+
+function getResultsID(constituencyID){
+  for(var i = 0; i < json.length; i++) {
+    var obj = json[i];
+      if (obj.ons_code == constituencyID){
+        return obj.id
+      }
+  }
+}
+
+function getWinnerColour(constituencyID){
+  for(var i = 0; i < json.length; i++) {
+    var obj = json[i];
+    if (obj.ons_code == constituencyID){
+      switch(obj.win) {
+         case "SNP":
+           return "yellow"
+           break;
+         case "Con":
+           return "blue"
+           break;
+         case "LD":
+           return "orange"
+           break;
+         case "Lab":
+           return "red"
+           break;
+           
+         default:
+           return "white"
+      }
+    }
+  }
+  
+}
+
+  map.data.loadGeoJson('/Scottish_Parliamentary_Constituencies_May_2016_Generalised_Clipped_Boundaries_in_Scotland.json');
+  
+   
+   
+  var bounds = new google.maps.LatLngBounds();
+  
+  setTimeout(function() {
+  map.data.forEach(function(feature){
+    
+    if(feature.getProperty('spc16cd') === "<%= raw @result.ons_code %>"){
+      feature.getGeometry().forEachLatLng(function(latlng){
+        bounds.extend(latlng);
+      });
+      
+    } 
+    
+  });
+    map.fitBounds(bounds);
+  //map.setCenter(bounds.getCenter());
+  }, 500); 
+  
+  
+  
+  
+  map.data.setStyle(function(feature) {
+    
+    //alert(json)
+    var constituencyID = feature.getProperty('spc16cd');
+    var winnerColour =  getWinnerColour(constituencyID);
+    //alert(winnerColour)
+    return{
+      fillColor: winnerColour,
+      strokeWeight: 1
+      }
+
+  });
+  
+  map.data.addListener('click', function(event) {
+   //map.data.overrideStyle(event.feature, {fillColor: 'red'});
+   //window.location.href = "http://www.google.co.uk";
+   var constituencyID = event.feature.getProperty('spc16cd');
+   //var shape = "";
+   //event.feature.getGeometry().forEachLatLng(function(latlng){
+        //shape += latlng
+   // });
+   var resultsID = getResultsID(constituencyID);
+   var constituencyID = event.feature.getProperty('spc16cd');
+   
+
+   //alert("/results/" + resultsID);
+   window.location.href = "/results/" + resultsID;
+   
+  });
+  
+  
+} 
+</script>
+
+<script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhKyQWFivojfdUqLP1r_4wG-cMQke-G7o&callback=initMap">
+</script>
+

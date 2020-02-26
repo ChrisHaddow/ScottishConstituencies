@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      #mapDiv {
+        width: 1200px;
+        height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Scottish Constituencies</h1>
+     
+    <div id="mapDiv"></div>
+
+
+
+  <script type="text/javascript">
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('mapDiv'), {
+    zoom: 8,
+    center: {lat: 57.477772, lng: -4.224721}  //centering on Edinburgh
+  });
+  
+
+var json = <%= raw @jsonresults %>
+
+function getWinnerColour(constituencyID){
+  for(var i = 0; i < json.length; i++) {
+    var obj = json[i];
+    if (obj.ons_code == constituencyID){
+      switch(obj.win) {
+         case "SNP":
+           return "yellow"
+           break;
+         case "Con":
+           return "blue"
+           break;
+         case "LD":
+           return "orange"
+           break;
+         case "Lab":
+           return "red"
+           break;
+           
+         default:
+           return "white"
+      }
+    }
+  }
+  
+}
+
+  map.data.loadGeoJson('/Scottish_Parliamentary_Constituencies_May_2016_Generalised_Clipped_Boundaries_in_Scotland.json');
+      
+  map.data.setStyle(function(feature) {
+    
+    //alert(json)
+    var constituencyID = feature.getProperty('spc16cd');
+    var winnerColour =  getWinnerColour(constituencyID);
+    //alert(winnerColour)
+    return{
+      fillColor: winnerColour,
+      strokeWeight: 1
+      }
+
+  });
+  
+}
+    
+   </script>
+
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhKyQWFivojfdUqLP1r_4wG-cMQke-G7o&callback=initMap">
+    </script>
+  </body>
+</html>

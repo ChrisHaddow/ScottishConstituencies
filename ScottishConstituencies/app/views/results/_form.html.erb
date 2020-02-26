@@ -1,0 +1,157 @@
+<%= form_with(model: result, local: true) do |form| %>
+  <% if result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+        <% result.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ons_code %>
+    <%= form.text_field :ons_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :constituency %>
+    <%= form.text_field :constituency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region %>
+    <%= form.text_field :region %>
+  </div>
+
+  <div class="field">
+    <%= form.label :election_date %>
+    <%= form.date_select :election_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :electorate %>
+    <%= form.number_field :electorate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_ballot %>
+    <%= form.number_field :total_ballot %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_valid %>
+    <%= form.number_field :total_valid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rejected_ballot %>
+    <%= form.number_field :rejected_ballot %>
+  </div>
+
+  <div class="field">
+    <%= form.label :turnout %>
+    <%= form.text_field :turnout %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rejected_ballot_percent %>
+    <%= form.text_field :rejected_ballot_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :con %>
+    <%= form.number_field :con %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lab %>
+    <%= form.number_field :lab %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lib %>
+    <%= form.number_field :lib %>
+  </div>
+
+  <div class="field">
+    <%= form.label :snp %>
+    <%= form.number_field :snp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ind %>
+    <%= form.number_field :ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tusc %>
+    <%= form.number_field :tusc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grn %>
+    <%= form.number_field :grn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other %>
+    <%= form.number_field :other %>
+  </div>
+
+  <div class="field">
+    <%= form.label :con_percent %>
+    <%= form.text_field :con_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lab_percent %>
+    <%= form.text_field :lab_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lib_percent %>
+    <%= form.text_field :lib_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :snp_percent %>
+    <%= form.text_field :snp_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ind_percent %>
+    <%= form.text_field :ind_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tusc_percent %>
+    <%= form.text_field :tusc_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grn_percent %>
+    <%= form.text_field :grn_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_percent %>
+    <%= form.text_field :other_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :win %>
+    <%= form.text_field :win %>
+  </div>
+
+  <div class="field">
+    <%= form.label :second %>
+    <%= form.text_field :second %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

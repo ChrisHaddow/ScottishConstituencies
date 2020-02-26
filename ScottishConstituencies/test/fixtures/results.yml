@@ -1,0 +1,61 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ons_code: MyString
+  constituency: MyString
+  region: MyString
+  election_date: 2020-02-24
+  electorate: 1
+  total_ballot: 1
+  total_valid: 1
+  rejected_ballot: 1
+  turnout: 9.99
+  rejected_ballot_percent: 9.99
+  con: 1
+  lab: 1
+  lib: 1
+  snp: 1
+  ind: 1
+  tusc: 1
+  grn: 1
+  other: 1
+  con_percent: 9.99
+  lab_percent: 9.99
+  lib_percent: 9.99
+  snp_percent: 9.99
+  ind_percent: 9.99
+  tusc_percent: 9.99
+  grn_percent: 9.99
+  other_percent: 9.99
+  win: MyString
+  second: MyString
+
+two:
+  ons_code: MyString
+  constituency: MyString
+  region: MyString
+  election_date: 2020-02-24
+  electorate: 1
+  total_ballot: 1
+  total_valid: 1
+  rejected_ballot: 1
+  turnout: 9.99
+  rejected_ballot_percent: 9.99
+  con: 1
+  lab: 1
+  lib: 1
+  snp: 1
+  ind: 1
+  tusc: 1
+  grn: 1
+  other: 1
+  con_percent: 9.99
+  lab_percent: 9.99
+  lib_percent: 9.99
+  snp_percent: 9.99
+  ind_percent: 9.99
+  tusc_percent: 9.99
+  grn_percent: 9.99
+  other_percent: 9.99
+  win: MyString
+  second: MyString

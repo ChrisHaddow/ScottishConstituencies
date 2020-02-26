@@ -1,0 +1,2 @@
+json.extract! result, :id, :ons_code, :constituency, :region, :election_date, :electorate, :total_ballot, :total_valid, :rejected_ballot, :turnout, :rejected_ballot_percent, :con, :lab, :lib, :snp, :ind, :tusc, :grn, :other, :con_percent, :lab_percent, :lib_percent, :snp_percent, :ind_percent, :tusc_percent, :grn_percent, :other_percent, :win, :second, :created_at, :updated_at
+json.url result_url(result, format: :json)

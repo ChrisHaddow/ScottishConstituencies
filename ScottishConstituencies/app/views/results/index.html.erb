@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ons code</th>
+      <th>Constituency</th>
+      <th>Region</th>
+      <th>Election date</th>
+      <th>Electorate</th>
+      <th>Total ballot</th>
+      <th>Total valid</th>
+      <th>Rejected ballot</th>
+      <th>Turnout</th>
+      <th>Rejected ballot percent</th>
+      <th>Con</th>
+      <th>Lab</th>
+      <th>Lib</th>
+      <th>Snp</th>
+      <th>Ind</th>
+      <th>Tusc</th>
+      <th>Grn</th>
+      <th>Other</th>
+      <th>Con percent</th>
+      <th>Lab percent</th>
+      <th>Lib percent</th>
+      <th>Snp percent</th>
+      <th>Ind percent</th>
+      <th>Tusc percent</th>
+      <th>Grn percent</th>
+      <th>Other percent</th>
+      <th>Win</th>
+      <th>Second</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.ons_code %></td>
+        <td><%= result.constituency %></td>
+        <td><%= result.region %></td>
+        <td><%= result.election_date %></td>
+        <td><%= result.electorate %></td>
+        <td><%= result.total_ballot %></td>
+        <td><%= result.total_valid %></td>
+        <td><%= result.rejected_ballot %></td>
+        <td><%= result.turnout %></td>
+        <td><%= result.rejected_ballot_percent %></td>
+        <td><%= result.con %></td>
+        <td><%= result.lab %></td>
+        <td><%= result.lib %></td>
+        <td><%= result.snp %></td>
+        <td><%= result.ind %></td>
+        <td><%= result.tusc %></td>
+        <td><%= result.grn %></td>
+        <td><%= result.other %></td>
+        <td><%= result.con_percent %></td>
+        <td><%= result.lab_percent %></td>
+        <td><%= result.lib_percent %></td>
+        <td><%= result.snp_percent %></td>
+        <td><%= result.ind_percent %></td>
+        <td><%= result.tusc_percent %></td>
+        <td><%= result.grn_percent %></td>
+        <td><%= result.other_percent %></td>
+        <td><%= result.win %></td>
+        <td><%= result.second %></td>
+        <td><%= link_to 'Show', result %></td>
+        <td><%= link_to 'Edit', edit_result_path(result) %></td>
+        <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Result', new_result_path %>

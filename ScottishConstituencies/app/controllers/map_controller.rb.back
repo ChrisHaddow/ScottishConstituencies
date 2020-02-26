@@ -1,0 +1,9 @@
+require 'json'
+class MapController < ApplicationController
+  def index
+    
+     @constituencies = Result.all
+    @jsonresults = @constituencies.to_json
+  
+  end
+end
